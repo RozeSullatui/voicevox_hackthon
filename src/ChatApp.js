@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ChatRoom} from "./components/ChatRoom"
+import "./styles.css"
 
 export class ChatApp extends React.Component {
   constructor(props) {
@@ -8,9 +9,9 @@ export class ChatApp extends React.Component {
     this.state = {
       messages: [],
       users: [
-        { id: 1, name: "User A", avatar: "https://via.placeholder.com/50x50", status: "online" },
-        { id: 2, name: "User B", avatar: "https://via.placeholder.com/50x50", status: "offline" },
-        { id: 3, name: "User C", avatar: "https://via.placeholder.com/50x50", status: "online" },
+        { id: 1, name: "User A", avatar: "https://via.placeholder.com/50x50", status: "online"},
+        // { id: 2, name: "User B", avatar: "https://via.placeholder.com/50x50", status: "offline" },
+        // { id: 3, name: "User C", avatar: "https://via.placeholder.com/50x50", status: "online" },
       ],
     };
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
@@ -19,7 +20,7 @@ export class ChatApp extends React.Component {
   handleMessageSubmit(text) {
     const newMessage = {
       id: Date.now(),
-      sender: "User A",
+      sender: "Me",
       time: new Date().toLocaleTimeString(),
       text: text,
     };
