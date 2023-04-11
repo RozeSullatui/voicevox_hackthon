@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import {MessageList} from './components/MessageList';
-import {Sidebar} from './components/Sidebar.js';
-import {ChatInput} from './components/Input';
 
-function App() {
+
+import React, { useState } from 'react';
+import { Sidebar } from './components/Sidebar';
+import { MessageList } from './components/MessageList';
+import { ChatInput } from './components/Input';
+import './styles.css';
+
+export const App = () => {
   const [messages, setMessages] = useState([]);
 
-  const handleSendMessage = (newMessage) => {
+  const handleSendMessage = (text) => {
+    const newMessage = { text };
     setMessages([...messages, newMessage]);
   };
 
   return (
-    <div className="App">
-    <Sidebar/>
-        <MessageList messages={messages} />
-        <ChatInput onSendMessage={handleSendMessage} />
-      </div>
+    <div className="app">
+      <Sidebar />
+      <MessageList messages={messages} />
+      <ChatInput onSendMessage={handleSendMessage} />
+    </div>
   );
-}
-
-export default App;
-
-
+};
 
 
 

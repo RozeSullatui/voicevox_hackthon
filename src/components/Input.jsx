@@ -1,41 +1,72 @@
-import React, { useState } from 'react';
-import '../styles.css'
+// import React, { useState } from 'react';
+// import '../styles.css'
 
+import React, { useState } from 'react';
+import '../styles.css';
 
 export const ChatInput = ({ onSendMessage }) => {
-  const [message, setMessage] = useState('');
+  const [messageText, setMessageText] = useState('');
 
-  const handleChange = (e) => {
-    setMessage(e.target.value);
+  const handleTextChange = (e) => {
+    setMessageText(e.target.value);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && message.trim() !== '') {
-      onSendMessage(message);
-      setMessage('');
-    }
-  };
-
-  const handleClick = () => {
-    if (message.trim() !== '') {
-      onSendMessage(message);
-      setMessage('');
+  const handleSendMessage = () => {
+    if (messageText) {
+      onSendMessage(messageText);
+      setMessageText('');
     }
   };
 
   return (
-    <div className="chat-input">
+        <div className="chat-input">
       <input
         type="text"
         placeholder="Type your message"
-        value={message}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
+        value={messageText}
+      onChange={handleTextChange}
       />
-      <button onClick={handleClick}>Send</button>
+      <button onClick={handleSendMessage}>Send</button>
     </div>
   );
 };
+
+
+
+// export const ChatInput = ({ onSendMessage }) => {
+//   const [message, setMessage] = useState('');
+
+//   const handleChange = (e) => {
+//     setMessage(e.target.value);
+//   };
+
+//   const handleKeyDown = (e) => {
+//     if (e.key === 'Enter' && message.trim() !== '') {
+//       onSendMessage(message);
+//       setMessage('');
+//     }
+//   };
+
+//   const handleClick = () => {
+//     if (message.trim() !== '') {
+//       onSendMessage(message);
+//       setMessage('');
+//     }
+//   };
+
+//   return (
+//     <div className="chat-input">
+//       <input
+//         type="text"
+//         placeholder="Type your message"
+//         value={message}
+//         onChange={handleChange}
+//         onKeyDown={handleKeyDown}
+//       />
+//       <button onClick={handleClick}>Send</button>
+//     </div>
+//   );
+// };
 
 
 // export function ChatInput(props) {

@@ -45,6 +45,7 @@
   border-radius: 5px;
   padding: 5px;
   height: 40px;
+  margin-left: 21%;
 }
 
 .chat-input input {
@@ -113,5 +114,5 @@
 }
 
 .message{
-    font-size: 10000px;
+
 }
