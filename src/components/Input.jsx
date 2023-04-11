@@ -1,101 +1,61 @@
-// import React, { useState } from 'react';
-// import '../styles.css'
-
 import React, { useState } from 'react';
-import '../styles.css';
+import '../styles.css'
 
 export const ChatInput = ({ onSendMessage }) => {
-  const [messageText, setMessageText] = useState('');
+  const [text, setText] = useState("");
 
-  const handleTextChange = (e) => {
-    setMessageText(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSendMessage(text);
+    setText("");
   };
 
-  const handleSendMessage = () => {
-    if (messageText) {
-      onSendMessage(messageText);
-      setMessageText('');
-    }
+  const handleChange = (e) => {
+    setText(e.target.value);
   };
 
   return (
-        <div className="chat-input">
+    <form onSubmit={handleSubmit} className="chat-input">
       <input
         type="text"
-        placeholder="Type your message"
-        value={messageText}
-      onChange={handleTextChange}
+        value={text}
+        onChange={handleChange}
+        placeholder="Type a message"
       />
-      <button onClick={handleSendMessage}>Send</button>
-    </div>
+      <button type="submit">Send</button>
+    </form>
   );
 };
 
-
+// import React, { useState } from 'react';
+// import '../styles.css';
 
 // export const ChatInput = ({ onSendMessage }) => {
-//   const [message, setMessage] = useState('');
+//   const [messageText, setMessageText] = useState('');
 
-//   const handleChange = (e) => {
-//     setMessage(e.target.value);
+//   const handleTextChange = (e) => {
+//     setMessageText(e.target.value);
 //   };
 
-//   const handleKeyDown = (e) => {
-//     if (e.key === 'Enter' && message.trim() !== '') {
-//       onSendMessage(message);
-//       setMessage('');
-//     }
-//   };
-
-//   const handleClick = () => {
-//     if (message.trim() !== '') {
-//       onSendMessage(message);
-//       setMessage('');
+//   const handleSendMessage = () => {
+//     if (messageText) {
+//       onSendMessage(messageText);
+//       setMessageText('');
 //     }
 //   };
 
 //   return (
-//     <div className="chat-input">
+//         <div className="chat-input">
 //       <input
 //         type="text"
 //         placeholder="Type your message"
-//         value={message}
-//         onChange={handleChange}
-//         onKeyDown={handleKeyDown}
+//         value={messageText}
+//       onChange={handleTextChange}
 //       />
-//       <button onClick={handleClick}>Send</button>
+//       <button onClick={handleSendMessage}>Send</button>
 //     </div>
 //   );
 // };
 
-
-// export function ChatInput(props) {
-//   const [message, setMessage] = useState('');
-
-//   const handleChange = (event) => {
-//     setMessage(event.target.value);
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     // props.onSendMessageが定義されていることを確認して、それを呼び出す
-//     if (props.onSendMessage) {
-//       props.onSendMessage(message);
-//     }
-//     setMessage(''); // メッセージの入力欄を空にする
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="chat-input">
-//       <input
-//         type="text"
-//         placeholder="Type a message..."
-//         value={message}
-//         onChange={handleChange}
-//       />
-//       <button type="submit">Send</button>
-//     </form>
-//   );
-// }
 
 

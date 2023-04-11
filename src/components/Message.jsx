@@ -2,14 +2,27 @@
 import React from 'react';
 import '../styles.css'
 
- export const Message = ({ message }) => {
+export const Message = ({ message, className }) => {
+  const { text, isUser } = message;
   return (
-    <div className="message">
-      <div>{message.text}</div>
+    <div className={`message ${className} ${isUser ? 'right' : 'left'}`}>
+      <div>{text}</div>
     </div>
   );
-  
 };
+
+
+
+
+// export const Message = ({ message }) => {
+//   return (
+//     <div className="message" key={message.id}> {/* keyプロパティにIDを指定 */}
+//       <div className="message-text">{message.text}</div>
+//       <div className="message-time">{new Date(message.timestamp).toLocaleString()}</div> {/* 送信時刻を表示 */}
+//     </div>
+//   );
+// };
+
 
 
 
