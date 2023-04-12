@@ -23,17 +23,14 @@ export const MessageList = ({ messages, setMessages }) => {
         <Message
           key={index}
           message={message}
-          className={message.isUser ? 'right' : 'left'}
         />
       ))}
       {textMessages.map((message, index) => (
         <div
           key={index}
-          className={`text-message ${message.isUser ? 'right' : 'left'}`}
         >
           <Message
             message={{ text: message.text, isUser: message.isUser }}
-            className={message.isUser ? 'right' : 'left'}
           />
         </div>
       ))}
