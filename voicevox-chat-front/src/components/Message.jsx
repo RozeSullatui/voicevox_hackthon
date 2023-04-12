@@ -1,12 +1,13 @@
 import React from 'react';
 import '../styles.css'
 
-export const Message = ({ message }) => {
+export const Message = ({ message, className }) => {
   const { text, isUser } = message;
-  const className = isUser ? 'right' : 'left';
   return (
     <div className={`message ${className}`}>
-      <div>{text}</div>
+      <div className={`message-inner ${isUser ? 'message-right' : 'message-left'}`}>
+        {text}
+      </div>
     </div>
   );
 };
