@@ -10,11 +10,11 @@ export const App = () => {
 
   const handleSendMessage = (text) => {
     if (text !== '') {
-      const newMessage = { text };
+      const newMessage = { text, isUser: true };
       setMessages([...messages, newMessage]);
 
       setTimeout(() => {
-        const autoReply = { text: 'Hello world!' };
+        const autoReply = { text: 'Hello world!', isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
       }, 1000);
@@ -24,7 +24,7 @@ export const App = () => {
   return (
     <div className="app">
       <Sidebar />
-      <MessageList messages={messages} showAutoReply={showAutoReply} />
+      <MessageList messages={messages} setMessages={setMessages} showAutoReply={showAutoReply} />
       <ChatInput onSendMessage={handleSendMessage} />
     </div>
   );
