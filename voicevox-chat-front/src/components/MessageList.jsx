@@ -3,7 +3,7 @@ import { Message } from './Message';
 import '../styles.css';
 
 export const MessageList = ({ messages }) => {
-  const [textMessages, setTextMessages] = useState([]);
+  const [textMessages] = useState([]);
 
 
   return (
