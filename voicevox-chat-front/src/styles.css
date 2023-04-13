@@ -62,6 +62,7 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  width: 5%;
 }
 
 .chat-input button:hover {
@@ -143,3 +144,4 @@
   background-color: white;
   color: #333;
 }
+

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 import '../styles.css'
 
 export const ChatInput = ({ onSendMessage }) => {
@@ -22,7 +25,7 @@ export const ChatInput = ({ onSendMessage }) => {
         onChange={handleChange}
         placeholder="Type a message"
       />
-      <button type="submit">Send</button>
+      <button type="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
     </form>
   );
 };
