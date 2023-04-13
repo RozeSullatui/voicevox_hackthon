@@ -9,3 +9,5 @@ def api():
         'title' : 'Flask React Application',
         'completed': False
     }
+
+app.run()
