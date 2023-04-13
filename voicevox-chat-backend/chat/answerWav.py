@@ -6,16 +6,16 @@ def makeWav(text):
 
     # 音声合成処理
     # audio_query (音声合成用のクエリを作成するAPI)
-    res1 = requests.post("http://voicevox:50021/audio_query",
+    query = requests.post("http://voicevox:50021/audio_query",
                         params={"text": text, "speaker": 1})
     # synthesis (音声合成するAPI)
-    res2 = requests.post("http://voicevox:50021/synthesis",
+    speaker = requests.post("http://voicevox:50021/synthesis",
                         params={"speaker": 1},
-                        data=json.dumps(res1.json()))
+                        data=json.dumps(query.json()))
     # wavファイルに書き込み
-    audio_file = "../wav_dir/answer.wav" # f"wav_dir/{ut}.wav"
+    audio_file = "wav/answer.wav"
     with open(audio_file, mode="wb") as f:
-        f.write(res2.content)
+        f.write(speaker.content)
 
     return audio_file
 
@@ -24,9 +24,10 @@ def playWav(file):
         # wavファイル再生
         wav_obj = simpleaudio.WaveObject.from_wave_file(f)
         play_obj = wav_obj.play()
-        play_obj.wait_done()
+        # 音声が終わるまでストップ
+        # play_obj.wait_done()
 
 
 # テスト用　いらない時はコメントアウト
-answerWav("こんにちは！ずんだもんです")
-playWav("../wav_dir/answer.wav")
+makeWav("こんにちは！ずんだもんです")
+playWav("wav/answer.wav")
