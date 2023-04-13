@@ -13,11 +13,9 @@ export const App = () => {
       const newMessage = { text, isUser: true };
       setMessages([...messages, newMessage]);
 
-      setTimeout(() => {
         const autoReply = { text: 'Hello world!', isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
-      }, 1000);
     }
   };
 

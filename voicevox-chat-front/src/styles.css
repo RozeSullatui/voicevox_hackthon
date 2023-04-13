@@ -145,3 +145,13 @@
   color: #333;
 }
 
+.message-right {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.download-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
