@@ -152,6 +152,18 @@
 }
 
 .download-icon {
+  margin-top: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.download-icon2 {
+  margin-top: 15px;
   margin-left: 10px;
   cursor: pointer;
+}
+
+.download-icon:hover, .download-icon2 :hover{
+color: #0084ff;
+
 }
