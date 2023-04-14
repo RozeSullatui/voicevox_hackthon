@@ -8,6 +8,11 @@ export const Message = ({ message }) => {
   return (
     
     <div className={` ${isUser ? 'message-right' : 'message-left'}`}>
+             {!isUser && (
+        <div className="user-icon">
+          <img src="user-icon.png" alt="User Icon" className="user-icon" />
+        </div>
+             )}
               {isUser ? (
         <FontAwesomeIcon icon={faDownload} className="download-icon"  />
       ) : null}
