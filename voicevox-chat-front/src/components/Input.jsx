@@ -14,6 +14,7 @@ export const ChatInput = ({ onSendMessage }) => {
     setText("");
   };
 
+  
   const handleRecognitionEnd = (recognizedText) => {
     setText(recognizedText);
   };
