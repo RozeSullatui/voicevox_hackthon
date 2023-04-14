@@ -44,6 +44,7 @@
   padding: 5px 10px;
   cursor: pointer;
   width: 5%;
+  margin-left: 1px;
 }
 
 .chat-input button:hover {
@@ -84,14 +85,16 @@
 
 
 .message-list {
-  margin-left: 19%; /* Sidebarコンポーネントの幅に合わせて左にマージンを設定 */
-  width: 80%; /* 残りの80%の幅を占めるように幅を設定 */
-  margin-top: -1%;
+  margin-left: 20%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 80%;
   background-color: burlywood;
-  height: 100vh;
   overflow-y: auto;
-  padding: 20px;
-  box-sizing: border-box;
+  box-sizing: border-box; 
+  padding-bottom: 6%;
 }
 
 
@@ -108,7 +111,7 @@
 }
 
 .message-inner {
-  max-width: 60%;
+  max-width: 57%;
   padding: 10px;
   border-radius: 10px;
   font-size: 16px;
@@ -116,11 +119,15 @@
 }
 
 .message-right .message-inner {
+  margin-top: 10px;
+  margin-right: 20px;
   background-color: blue;
   color: white;
 }
 
 .message-left .message-inner {
+  margin-top: 10px;
+  margin-left: 20px;
   background-color: white;
   color: #333;
 }
@@ -132,13 +139,13 @@
 }
 
 .download-icon {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-right: 10px;
   cursor: pointer;
 }
 
 .download-icon2 {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -147,4 +154,3 @@
 color: #0084ff;
 
 }
-
