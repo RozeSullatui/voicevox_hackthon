@@ -10,7 +10,7 @@ export const Message = ({ message }) => {
     <div className={` ${isUser ? 'message-right' : 'message-left'}`}>
              {!isUser && (
         <div className="user-icon">
-          <img src="user-icon.png" alt="User Icon" className="user-icon" />
+          <img src="../images/Icon.png" alt=''/>
         </div>
              )}
               {isUser ? (
