@@ -3,7 +3,7 @@ from answerWav import makeWav, playWav
 
 if __name__ == "__main__":
     past_messages_list = []
-    
+
     while True:
         # 無限ループで会話を行う
         # 終了処理はCtrl+Z
