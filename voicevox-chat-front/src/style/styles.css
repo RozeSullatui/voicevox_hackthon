@@ -127,7 +127,6 @@
 
 .message-left .message-inner {
   margin-top: 10px;
-  margin-left: 20px;
   background-color: white;
   color: #333;
 }
@@ -158,6 +157,15 @@
 color: #0084ff;
 }
 
+.link{
+  margin-top: 10px;
+}
+
+.icon{
+  
+}
+
 .user-icon img {
   width: 50px;
 }
+
