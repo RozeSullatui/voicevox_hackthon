@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+import shutil
 from flask import Flask, request, jsonify
 
 from chat.chat_gpt import callChatGPT
@@ -39,5 +40,7 @@ def api():
             return jsonify(response)
     else:
         past_messages_list = []
+        shutil.rmtree('wav')
+        os.mkdir('wav')
 
 app.run()
