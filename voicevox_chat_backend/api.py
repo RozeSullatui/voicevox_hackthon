@@ -9,19 +9,19 @@ load_dotenv()
 path = os.environ.get('PYTHONPATH')
 basedir = os.path.dirname(__file__)
 app = Flask(__name__)
+
 past_messages_list = []
 
 @app.route('/api',methods=['GET','POST'])
 def api():
     global past_messages_list
     
-    speaker_ID = 42
+    speaker_ID = 1
     
     if request.method == "POST":
         try:
             data = request.get_json()
             text = data['post_text']
-            
             
             answer = callChatGPT(text, "/home/voicevox_hackthon/voicevox_chat_backend/chat/role_text/zundamon.txt", past_messages_list)
             
