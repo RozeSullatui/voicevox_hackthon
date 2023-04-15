@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import '../styles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { SpeechRecBtn } from './SpeechRecBtn';
+
+import '../style/styles.css';
 
 export const ChatInput = ({ onSendMessage }) => {
   const [text, setText] = useState("");
@@ -10,9 +14,15 @@ export const ChatInput = ({ onSendMessage }) => {
     setText("");
   };
 
+  
+  const handleRecognitionEnd = (recognizedText) => {
+    setText(recognizedText);
+  };
+
   const handleChange = (e) => {
     setText(e.target.value);
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="chat-input">
@@ -22,7 +32,8 @@ export const ChatInput = ({ onSendMessage }) => {
         onChange={handleChange}
         placeholder="Type a message"
       />
-      <button type="submit">Send</button>
+      <SpeechRecBtn onRecognitionEnd={handleRecognitionEnd}/>
+      <button type="submit"><FontAwesomeIcon icon={faPaperPlane} /></button>
     </form>
   );
 };

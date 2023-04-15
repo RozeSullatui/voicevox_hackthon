@@ -2,6 +2,8 @@ import simpleaudio
 import json
 import requests
 import time
+import os
+basedir = os.path.dirname(__file__)
 
 def makeWav(text, speaker_ID):
     ut = time.time()
@@ -15,7 +17,7 @@ def makeWav(text, speaker_ID):
                         params={"speaker": speaker_ID},
                         data=json.dumps(query.json()))
     # wavファイルに書き込み
-    audio_file = f"wav/{speaker_ID}answer{ut}.wav"
+    audio_file = os.path.join(basedir,f"wav/{speaker_ID}answer{ut}.wav")
     with open(audio_file, mode="wb") as f:
         f.write(speaker.content)
 
@@ -29,7 +31,7 @@ def playWav(file):
         # 音声が終わるまでストップ
         play_obj.wait_done()
 
-
 # テスト用　いらない時はコメントアウト
+
 makeWav("こんにちは！ずんだもんです", 42)
-# playWav("wav/answer.wav")
+playWav(os.path.join(basedir,"wav/answer.wav"))
