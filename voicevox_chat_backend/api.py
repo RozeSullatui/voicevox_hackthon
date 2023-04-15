@@ -79,6 +79,6 @@ def change_chara():
         default_ID = 3
         speaker_ID = default_ID
         print(speaker_ID)
-        return jsonify({})
+        return jsonify({"GET":F"reset speaker_ID:3={speaker_ID}"})
 
 app.run()
