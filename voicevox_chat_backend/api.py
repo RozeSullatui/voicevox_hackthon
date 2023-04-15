@@ -17,14 +17,16 @@ past_messages_list = []
 def api():
     global past_messages_list
     
-    speaker_ID = 1
+    speaker_ID = 42
     
     if request.method == "POST":
         try:
             data = request.get_json()
             text = data['post_text']
             
-            answer = callChatGPT(text, "role_text/zundamon.txt")
+            
+            answer = callChatGPT(text, "/home/voicevox_hackthon/voicevox_chat_backend/chat/role_text/zundamon.txt", past_messages_list)
+            
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
@@ -41,16 +43,16 @@ def api():
             return jsonify(response)
     else:
         past_messages_list = []
-        shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
-        os.mkdir("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
-    
+        # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
+        # os.mkdir("chat/wav")
     '''
     try:
-        print(request.headers.get('Content-Type'))
         data = request.get_json()
         text = data['post_text']
         
-        answer = callChatGPT(text, "role_text/zundamon.txt")
+        
+        answer = callChatGPT(text, "/home/voicevox_hackthon/voicevox_chat_backend/chat/role_text/zundamon.txt", past_messages_list)
+        
 
         res = answer[0]
         # playWav(makeWav(res, speaker_ID))
