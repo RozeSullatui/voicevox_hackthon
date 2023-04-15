@@ -4,6 +4,12 @@
     margin: 20px 0px;
     background-color: #ff4d4d;
     border-radius: 10px;
+    cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+  }
+
+  .sidebar-row:hover{
+      background-color: #e60000;
   }
   
 .sidebar-row img {
@@ -13,6 +19,7 @@ border-radius: 10px;
 
 .sidebar-row h4 {
   margin: 0px 0px;
+  margin-left: 5px;
   padding: 12px;
   color: white;
 }
