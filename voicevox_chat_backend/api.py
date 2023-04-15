@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 import os
 import shutil
-from flask import Flask, request, jsonify
-
+import io
+from flask import Flask, request, jsonify,send_file
 from chat.chat_gpt import callChatGPT
 from chat.answerWav import playWav, makeWav
 
@@ -66,5 +66,19 @@ def api():
         response = {'result':res}
         return jsonify(response)
     '''
+
+@app.route('/audio')
+def get_audio():
+    # オーディオファイルを読み込みます
+    with open('/path/to/audio.wav', 'rb') as f:
+        audio_data = f.read()
+    # ファイルをレスポンスとして返します
+    return send_file(
+        io.BytesIO(audio_data),
+        mimetype='audio/wav',
+        as_attachment=True,
+        attachment_filename='audio.wav'
+    )
+
 
 app.run()
