@@ -29,7 +29,9 @@ export const HomePage = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ post_text: text })
+        body: JSON.stringify({ 
+          post_text: text
+        })
       })
       .then(response => response.json())
       .then(data => {
@@ -37,11 +39,25 @@ export const HomePage = () => {
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
         // 音を再生する
-        const audioFileName = data.audio_file_name; // audio_file_nameを取得
-        const audio = new Audio(`/audio?filename=${audioFileName}`); // filenameをパラメーターにして/audioエンドポイントにアクセス
-        audio.play();
-      })
-      .catch(error => console.error(error));
+        const audioFileName = data.audio_file_name;
+        fetch('/audio', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            filename: audioFileName
+          })
+        })
+        .then(response => response.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const audio = new Audio(url);
+          audio.play();
+        })
+        .catch(error => console.error(error));
+              })
+              .catch(error => console.error(error));
     }
   };
 
