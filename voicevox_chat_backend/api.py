@@ -16,7 +16,7 @@ past_messages_list = []
 def api():
     global past_messages_list
     
-    speaker_ID = 42
+    speaker_ID = 1
     
     if request.method == "POST":
         try:
@@ -28,7 +28,6 @@ def api():
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
-            
             makeWav(res, speaker_ID)
             response = {'result':res}
             

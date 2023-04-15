@@ -7,7 +7,6 @@ basedir = os.path.dirname(__file__)
 
 def makeWav(text, speaker_ID):
     ut = time.time()
-
     # 音声合成処理
     # audio_query (音声合成用のクエリを作成するAPI)
     query = requests.post("http://voicevox:50021/audio_query",
