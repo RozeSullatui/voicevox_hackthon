@@ -31,5 +31,5 @@ def playWav(file):
 
 
 # テスト用　いらない時はコメントアウト
-makeWav("こんにちは！ずんだもんです")
-playWav("wav/answer.wav")
+# makeWav("こんにちは！ずんだもんです")
+# playWav("wav/answer.wav")
