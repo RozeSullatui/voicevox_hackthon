@@ -28,17 +28,21 @@ def api():
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
-            makeWav(res, speaker_ID)
-            response = {'result':res}
+            wavfile = makeWav(res, speaker_ID)
+            response_result = {'result':res}
+            response_wavfile = {'audio_file_name':wavfile}
+
             
             past_messages_list = answer[1]
             
-            return jsonify(response)
+            return jsonify(response_result),jsonify(response_wavfile)
         
         except Exception as e:
             res = "エラーなのだ。もう一度内容を入力してほしいのだ"
+            wavfile = "chat/wav2/error.wav"
             response = {'result':res}
-            return jsonify(response)
+            response_wavfile = {'audio_file_name':wavfile}
+            return jsonify(response),jsonify(response_wavfile)
     else:
         past_messages_list = []
         # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
@@ -46,7 +50,9 @@ def api():
 @app.route('/audio')
 def get_audio():
     # オーディオファイルを読み込みます
-    fpath= os.path.join(basedir, "chat/wav2/error.wav")
+    filename = request.args.get('filename') # filenameを取得
+    file_path = f'chat/{filename}' # ファイルパスを生成
+    fpath= os.path.join(basedir, file_path)
     with open(fpath, 'rb') as f:
         audio_data = f.read()
     # ファイルをレスポンスとして返します
