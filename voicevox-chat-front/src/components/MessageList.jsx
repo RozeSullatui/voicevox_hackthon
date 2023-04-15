@@ -17,7 +17,7 @@ export const MessageList = ({ messages, setMessages, showAutoReply }) => {
         <Message key={index} message={message} />
       ))}
       {showAutoReply && (
-        <div className="auto-reply-message">自動返信を表示しました</div>
+        <div className="auto-reply-message"></div>
       )}
       <div ref={messageEndRef} />
     </div>
