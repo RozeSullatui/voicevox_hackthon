@@ -1,5 +1,5 @@
-from functions.chat_gpt import callChatGPT
-from functions.voice_vox import makeWav, playWav
+from chat_gpt import callChatGPT
+from answerWav import makeWav, playWav
 
 if __name__ == "__main__":
     past_messages_list = []

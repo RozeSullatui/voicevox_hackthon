@@ -28,7 +28,7 @@ def callChatGPT(reply_text, role_text_file, past_messages_list):
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo", 
-        messages=role_messages
+        messages=past_messages_list
         )
     # ChatGPTからの回答をreturn
     return completion["choices"][0]["message"]["content"], past_messages_list
