@@ -19,8 +19,9 @@ if __name__ == "__main__":
             # wavファイル再生
             playWav(audio_file)
             
+            # past_message_listに今までの会話を代入
             past_messages_list = answer[1]
-            past_messages_list.append({"role": "system", "content": reply_chat_gpt})
+            
         except Exception as e:
             #エラー処理
             print(e)

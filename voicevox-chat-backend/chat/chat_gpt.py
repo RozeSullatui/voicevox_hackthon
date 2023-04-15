@@ -30,5 +30,9 @@ def callChatGPT(reply_text, role_text_file, past_messages_list):
         model="gpt-3.5-turbo", 
         messages=past_messages_list
         )
-    # ChatGPTからの回答をreturn
+    
+    # ChatGPTからの回答をpast_message_listに追加
+    past_messages_list.append({"role": "system", "content": completion["choices"][0]["message"]["content"]})
+    
+    # ChatGPTからの回答とpast_message_listをreturn
     return completion["choices"][0]["message"]["content"], past_messages_list
