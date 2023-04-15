@@ -32,8 +32,8 @@ def callChatGPT(text):
         ]
         )
     # ChatGPTからの回答をreturn
-    print(completion["choices"][0]["message"]["content"])
+    # print(completion["choices"][0]["message"]["content"])
     return completion["choices"][0]["message"]["content"]
 
 # テスト用
-callChatGPT("こんにちは")
+# callChatGPT("こんにちは")
