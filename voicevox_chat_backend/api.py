@@ -54,6 +54,7 @@ def api():
         past_messages_list = []
         # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
         # os.mkdir("chat/wav")
+        return jsonify({"speaker_ID":speaker_ID})
 
 @app.route('/audio', methods=['POST'])
 def get_audio():
@@ -91,6 +92,6 @@ def change_chara():
         Global_speakerID = default_ID 
         speaker_ID = default_ID
         print(speaker_ID)
-        return jsonify({"GET":F"reset speaker_ID:3={speaker_ID}"})
+        return jsonify({"speaker_ID":speaker_ID})
 
 app.run()
