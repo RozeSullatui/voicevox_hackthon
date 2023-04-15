@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Sidebar } from './components/Sidebar';
-import { MessageList } from './components/MessageList';
-import { ChatInput } from './components/Input';
-import './style/styles.css';
+import { Sidebar } from './Sidebar';
+import { MessageList } from './MessageList';
+import { ChatInput } from './Input';
+import '../style/styles.css';
 
-export const App = () => {
+export const HomePage = () => {
   const [messages, setMessages] = useState([]);
   const [showAutoReply, setShowAutoReply] = useState(false);
   const [initialData, setInitialData] = useState([{}])
