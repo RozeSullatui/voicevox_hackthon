@@ -4,15 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCirclePlay} from '@fortawesome/free-solid-svg-icons';
 
 export const AudioButton = ({}) => {
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const prevIsPlaying = useRef();
 
-  const audioClick = () => {
-    if (!isPlaying) {
-      setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
-    }
+  const audioPlay = () => {
+    setIsPlaying(prevIsPlaying.current);
   };
 
   useEffect(() => {
@@ -29,13 +26,14 @@ export const AudioButton = ({}) => {
 
     return () => {
       audioContext.close();
+      prevIsPlaying.current = !isPlaying
     };
   }, [isPlaying]);
 
   return (
     <React.Fragment>
-      <audio ref={audioRef} src={process.env.PUBLIC_URL + '/answer.wav'} />
-      <button onClick={audioClick}>
+      <audio ref={audioRef} src={process.env.PUBLIC_URL + '/error.wav'} controls={isPlaying}/>
+      <button onClick={audioPlay}>
           <FontAwesomeIcon icon={faCirclePlay} className="play-icon"/>
       </button>
     </React.Fragment>
