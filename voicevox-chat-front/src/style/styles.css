@@ -150,7 +150,14 @@
   cursor: pointer;
 }
 
+.play-icon:hover, .play-icon2:hover{
+  color: #0084ff;
+  }
+
 .download-icon:hover, .download-icon2 :hover{
 color: #0084ff;
+}
 
+.user-icon img {
+  width: 50px;
 }
