@@ -3,19 +3,19 @@ import json
 import requests
 import time
 
-def makeWav(text):
+def makeWav(text, speaker_ID):
     ut = time.time()
 
     # 音声合成処理
     # audio_query (音声合成用のクエリを作成するAPI)
     query = requests.post("http://voicevox:50021/audio_query",
-                        params={"text": text, "speaker": 1})
+                        params={"text": text, "speaker": speaker_ID})
     # synthesis (音声合成するAPI)
     speaker = requests.post("http://voicevox:50021/synthesis",
-                        params={"speaker": 1},
+                        params={"speaker": speaker_ID},
                         data=json.dumps(query.json()))
     # wavファイルに書き込み
-    audio_file = f"wav/answer{ut}.wav"
+    audio_file = f"wav/{speaker_ID}answer{ut}.wav"
     with open(audio_file, mode="wb") as f:
         f.write(speaker.content)
 
@@ -31,5 +31,5 @@ def playWav(file):
 
 
 # テスト用　いらない時はコメントアウト
-# makeWav("こんにちは！ずんだもんです")
+makeWav("こんにちは！ずんだもんです", 42)
 # playWav("wav/answer.wav")
