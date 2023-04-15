@@ -1,7 +1,9 @@
 import React from 'react';
-import '../styles.css'
+import '../style/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+
+import myImage from '../images/Icon.png';
 
 export const Message = ({ message }) => {
   const { text, isUser } = message;
@@ -10,7 +12,7 @@ export const Message = ({ message }) => {
     <div className={` ${isUser ? 'message-right' : 'message-left'}`}>
              {!isUser && (
         <div className="user-icon">
-          <img src="user-icon.png" alt="User Icon" className="user-icon" />
+          <img src={myImage} alt='' width="50"/>
         </div>
              )}
               {isUser ? (

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { SpeechRecBtn } from './SpeechRecBtn';
 
-import '../styles.css'
+import '../style/styles.css';
 
 export const ChatInput = ({ onSendMessage }) => {
   const [text, setText] = useState("");
