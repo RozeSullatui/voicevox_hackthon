@@ -8,24 +8,31 @@ load_dotenv(dotenv_path)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def callChatGPT(reply_text, role_text_file):
+def callChatGPT(reply_text, role_text_file, past_messages_list):
     
-    # role_text_fileをmessagesを読み込み
-    with open(role_text_file, 'r') as file:
-        dialogue = file.readlines()
-    
-    role_messages = []
-    message = ""
-    for line in dialogue:
-        message += line
-    
-    role_messages.append({"role": "system", "content": message})
-    role_messages.append({"role": "user", "content": reply_text})
+    # 最初の会話ならrole_text_fileをrole_messageに読み込んでpast_messages_listに追加
+    if len(past_messages_list) == 0:
+        role_message = ""
+        
+        with open(role_text_file, 'r') as file:
+            dialogue = file.readlines()
+        
+        for line in dialogue:
+                role_message += line
+                
+        past_messages_list.append({"role": "system", "content": role_message})
+        
+    # ユーザーからのリプライをpast_messages_listに追加
+    past_messages_list.append({"role": "user", "content": reply_text})
     
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo", 
-        messages=role_messages
+        messages=past_messages_list
         )
-    # ChatGPTからの回答をreturn
-    return completion["choices"][0]["message"]["content"]
+    
+    # ChatGPTからの回答をpast_message_listに追加
+    past_messages_list.append({"role": "system", "content": completion["choices"][0]["message"]["content"]})
+    
+    # ChatGPTからの回答とpast_message_listをreturn
+    return completion["choices"][0]["message"]["content"], past_messages_list
