@@ -1,30 +1,37 @@
 from dotenv import load_dotenv
 import os
-import shutil
-import io
+
 from flask import Flask, request, jsonify,send_file
 from chat.chat_gpt import callChatGPT
 from chat.answerWav import playWav, makeWav
+
+from api_helper import return_roleText
+
 load_dotenv()
+
 path = os.environ.get('PYTHONPATH')
 basedir = os.path.dirname(__file__)
 app = Flask(__name__)
-past_messages_list = []
 
+past_messages_list = []
+default_ID = 42
+       
 @app.route('/api',methods=['GET','POST'])
 def api():
     global past_messages_list
-    
-    speaker_ID = 42
-    
+    global default_ID
+    speaker_ID = default_ID
     if request.method == "POST":
+
         try:
             data = request.get_json()
             text = data['post_text']
             
-            
-            answer = callChatGPT(text, "/home/voicevox_hackthon/voicevox_chat_backend/chat/role_text/zundamon.txt", past_messages_list)
-            
+            answer = callChatGPT(
+                text,
+                return_roleText(speaker_ID),
+                past_messages_list,
+            )
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
@@ -40,17 +47,44 @@ def api():
             response = {'result':res}
             return jsonify(response)
     else:
+
+        print(speaker_ID)
         past_messages_list = []
-        # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
-        # os.mkdir("chat/wav")
+        return jsonify({"result":speaker_ID})
+
 @app.route('/audio')
 def get_audio():
     # オーディオファイルを読み込みます
     fpath= os.path.join(basedir, "chat/wav2/error.wav")
-    with open(fpath, 'rb') as f:
-        audio_data = f.read()
-    # ファイルをレスポンスとして返します
     return send_file(
         fpath,
     )
+
+@app.route('/changeCharacter',methods=['GET','POST'])
+def change_chara():
+    global default_ID
+
+    if request.method == "POST":
+        try:
+            data = request.get_json()
+            default_ID = data['speaker_ID']
+            speaker_ID = default_ID
+            print(speaker_ID)
+            return jsonify({"speaker_ID":speaker_ID})
+
+        except Exception as e:
+            res = "エラーなのだ。もう一度内容を入力してほしいのだ"
+            response = {'result':res}
+            return jsonify(response)
+
+    else:
+        default_ID = 3
+        speaker_ID = default_ID
+        print(speaker_ID)
+        return jsonify({})
+
+"""
+curl -X POST -H "Content-Type: application/json" -d '{'speaker_ID': 15, }' http://localhost:5000/changeCharacter
+"""
+
 app.run()
