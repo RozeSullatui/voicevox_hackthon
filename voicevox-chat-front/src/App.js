@@ -20,7 +20,7 @@ export const App = () => {
       const newMessage = { text, isUser: true };
       setMessages([...messages, newMessage]);
 
-        const autoReply = { text: initialData.title, isUser: false };
+        const autoReply = { text: initialData.result, isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
     }
