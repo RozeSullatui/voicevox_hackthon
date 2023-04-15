@@ -4,18 +4,15 @@ import io
 from flask import Flask, request, jsonify,send_file
 from chat.chat_gpt import callChatGPT
 from chat.answerWav import playWav, makeWav
-
 load_dotenv()
 path = os.environ.get('PYTHONPATH')
-
+basedir = os.path.dirname(__file__)
 app = Flask(__name__)
-
 @app.route('/api',methods=['GET','POST'])
 def api():
     try:
         data = request.get_json()
         text = data['post_text']
-
         res = callChatGPT(text)
         playWav(makeWav(text))
         response = {'result':res}
@@ -24,19 +21,14 @@ def api():
         res = "エラーなのだ。もう一度内容を入力してほしいのだ"
         response = {'result':res}
         return jsonify(response)
-
 @app.route('/audio')
 def get_audio():
     # オーディオファイルを読み込みます
-    with open('chat/wav2/error.wav', 'rb') as f:
+    fpath= os.path.join(basedir, "chat/wav2/error.wav")
+    with open(fpath, 'rb') as f:
         audio_data = f.read()
     # ファイルをレスポンスとして返します
     return send_file(
-        io.BytesIO(audio_data),
-        mimetype='audio/wav',
-        as_attachment=True,
-        attachment_filename='error.wav'
+        fpath,
     )
-
-
 app.run()

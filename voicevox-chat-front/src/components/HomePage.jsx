@@ -36,6 +36,9 @@ export const HomePage = () => {
         const autoReply = { text: data.result, isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
+        // 音楽を再生する
+        const audio = new Audio(audioUrl);
+        audio.play();
       })
       .catch(error => console.error(error));
     }
@@ -46,9 +49,6 @@ export const HomePage = () => {
       <Sidebar />
       <MessageList messages={messages} setMessages={setMessages} showAutoReply={showAutoReply} />
       <ChatInput onSendMessage={handleSendMessage} />
-      {audioUrl && (
-        <audio controls src={audioUrl}></audio>
-      )}
     </div>
   );
 };
