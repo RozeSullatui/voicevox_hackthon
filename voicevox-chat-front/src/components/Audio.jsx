@@ -1,41 +1,48 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../style/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCirclePlay} from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 
-export const AudioButton = ({}) => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const audioRef = useRef();
-  const prevIsPlaying = useRef();
+export const AudioButton = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+  const audioContextRef = useRef(null);
 
-  const audioPlay = () => {
-    setIsPlaying(prevIsPlaying.current);
+  useEffect(() => {
+    audioContextRef.current = new AudioContext();
+  }, []);
+
+  const handleAudioPlay = () => {
+    setIsPlaying(!isPlaying);
   };
 
   useEffect(() => {
-    var audioContext = new AudioContext();
     const audioElement = audioRef.current;
+    const audioContext = audioContextRef.current;
 
-    if (isPlaying) {
-      var source = audioContext.createMediaElementSource(audioElement);
-      source.connect(audioContext.destination);
-      audioElement.play();
-    } else {
-      audioElement.pause();
+    if (audioElement && audioContext) {
+      if (isPlaying) {
+        const source = audioContext.createMediaElementSource(audioElement);
+        source.connect(audioContext.destination);
+        audioElement.play();
+      } else {
+        audioElement.pause();
+      }
     }
 
     return () => {
-      audioContext.close();
-      prevIsPlaying.current = !isPlaying
+      if (audioContext) {
+        audioContext.close();
+      }
     };
-  }, []);
+  }, [isPlaying]);
 
   return (
-    <React.Fragment>
-      <audio ref={audioRef} src={process.env.PUBLIC_URL + '/error.wav'} controls={isPlaying}/>
-      <button onClick={audioPlay}>
-          <FontAwesomeIcon icon={faCirclePlay} className="play-icon"/>
+    <>
+      <audio ref={audioRef} src={process.env.PUBLIC_URL + '/error.wav'} />
+      <button onClick={handleAudioPlay}>
+        <FontAwesomeIcon icon={faCirclePlay} className="play-icon" />
       </button>
-    </React.Fragment>
-  )
-}
+    </>
+  );
+};
