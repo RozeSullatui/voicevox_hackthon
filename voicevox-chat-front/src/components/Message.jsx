@@ -14,10 +14,7 @@ export const Message = ({ message }) => {
       {!isUser && (
         <div className="user-icon">
           <img src={myImage} alt=''/>
-
           <AudioButton/>
-          <FontAwesomeIcon icon={faCirclePlay} className="play-icon"/>
-
         </div>
       )}
       {isUser ? (<FontAwesomeIcon icon={faDownload} className="download-icon"/>) : null}
