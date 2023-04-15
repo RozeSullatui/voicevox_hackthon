@@ -47,20 +47,18 @@ def api():
             response = {'result':res}
             return jsonify(response)
     else:
-
         print(speaker_ID)
         past_messages_list = []
         return jsonify({"result":speaker_ID})
 
 @app.route('/audio')
 def get_audio():
-    # オーディオファイルを読み込みます
     fpath= os.path.join(basedir, "chat/wav2/error.wav")
     return send_file(
-        fpath,
+        fpath, # オーディオファイルを読み込みます
     )
 
-@app.route('/changeCharacter',methods=['GET','POST'])
+@app.route('/changeCharacter', methods=['GET','POST'])
 def change_chara():
     global default_ID
 
@@ -82,9 +80,5 @@ def change_chara():
         speaker_ID = default_ID
         print(speaker_ID)
         return jsonify({})
-
-"""
-curl -X POST -H "Content-Type: application/json" -d '{'speaker_ID': 15, }' http://localhost:5000/changeCharacter
-"""
 
 app.run()
