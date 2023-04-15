@@ -35,17 +35,21 @@ def api():
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
-            makeWav(res, speaker_ID)
-            response = {'result':res}
+            wavfile = makeWav(res, speaker_ID)
+            response_result = {'result':res}
+            response_wavfile = {'audio_file_name':wavfile}
+
             
             past_messages_list = answer[1]
             
-            return jsonify(response)
+            return jsonify(response_result),jsonify(response_wavfile)
         
         except Exception as e:
             res = "エラーなのだ。もう一度内容を入力してほしいのだ"
+            wavfile = "chat/wav2/error.wav"
             response = {'result':res}
-            return jsonify(response)
+            response_wavfile = {'audio_file_name':wavfile}
+            return jsonify(response),jsonify(response_wavfile)
     else:
         print(speaker_ID)
         past_messages_list = []
