@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { MessageList } from './MessageList';
 import { ChatInput } from './Input';
@@ -7,6 +7,17 @@ import '../style/styles.css';
 export const HomePage = () => {
   const [messages, setMessages] = useState([]);
   const [showAutoReply, setShowAutoReply] = useState(false);
+  const [audioUrl, setAudioUrl] = useState('');
+
+  useEffect(() => {
+    fetch('/audio')
+      .then(res => res.blob())
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        setAudioUrl(url);
+      })
+      .catch(error => console.error(error));
+  }, []);
 
   const handleSendMessage = (text) => {
     if (text !== '') {
@@ -25,6 +36,9 @@ export const HomePage = () => {
         const autoReply = { text: data.result, isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
+        // 音楽を再生する
+        const audio = new Audio(audioUrl);
+        audio.play();
       })
       .catch(error => console.error(error));
     }
