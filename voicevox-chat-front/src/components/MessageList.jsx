@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Message } from './Message';
-import '../styles.css';
+import '../style/styles.css';
 
 export const MessageList = ({ messages }) => {
   const [textMessages] = useState([]);
