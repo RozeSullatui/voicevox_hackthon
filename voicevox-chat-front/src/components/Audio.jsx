@@ -28,7 +28,7 @@ export const AudioButton = ({}) => {
       audioContext.close();
       prevIsPlaying.current = !isPlaying
     };
-  }, [isPlaying]);
+  }, []);
 
   return (
     <React.Fragment>
