@@ -17,9 +17,6 @@ def api():
     global past_messages_list
     
     speaker_ID = 1
-    
-    if request.method == "GET":
-        request.get_json()
 
     if request.method == "POST":
         try:
