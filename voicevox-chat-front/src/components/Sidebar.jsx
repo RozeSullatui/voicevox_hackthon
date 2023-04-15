@@ -12,11 +12,11 @@ export function Sidebar() {
   return (
     <div className="sidebar">
       <h2>People in Chat</h2>
-        <SideItem image={Image} name={"ずんだもん"}/>
+        <SideItem image={Image} name={"ずんだもん"} speaker_id={1}/>
         <SideItem image={RedGirl} name={"あかね"}/>
         <SideItem image={TwinTail} name={"ミサキ"}/>
         <SideItem image={WhiteGirl} name={"れむ"}/>
-        <SideItem image={Cool} name={"だるさん"}/>
+        <SideItem image={Cool} name={"だるさん"} speaker_id={42}/>
 
       {/* 参加者の一覧を表示する */}
       {/* 例: <div className="participant">User A</div> */}

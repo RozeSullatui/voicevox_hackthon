@@ -1,30 +1,40 @@
 from dotenv import load_dotenv
 import os
-import shutil
-import io
+
 from flask import Flask, request, jsonify,send_file
 from chat.chat_gpt import callChatGPT
 from chat.answerWav import playWav, makeWav
+
+from api_helper import return_roleText
+
 load_dotenv()
+
 path = os.environ.get('PYTHONPATH')
+
 basedir = os.path.dirname(__file__)
 app = Flask(__name__)
 
 past_messages_list = []
 
+default_ID = 1
+Global_speakerID = default_ID
+
 @app.route('/api',methods=['GET','POST'])
 def api():
     global past_messages_list
-    
-    speaker_ID = 1
+    global Global_speakerID 
+    speaker_ID = Global_speakerID 
     
     if request.method == "POST":
         try:
             data = request.get_json()
             text = data['post_text']
             
-            answer = callChatGPT(text, "/home/voicevox_hackthon/voicevox_chat_backend/chat/role_text/zundamon.txt", past_messages_list)
-            
+            answer = callChatGPT(
+                text,
+                return_roleText(speaker_ID),
+                past_messages_list
+            )
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
@@ -44,6 +54,7 @@ def api():
         past_messages_list = []
         # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
         # os.mkdir("chat/wav")
+        return jsonify({"speaker_ID":speaker_ID})
 
 @app.route('/audio', methods=['POST'])
 def get_audio():
@@ -59,4 +70,28 @@ def get_audio():
     return send_file(
         fpath,
     )
+
+@app.route('/changeCharacter', methods=['GET','POST'])
+def change_chara():
+    global Global_speakerID
+    global default_ID 
+    if request.method == "POST":
+        try:
+            data = request.get_json()
+            Global_speakerID = data['speaker_ID']
+            speaker_ID = Global_speakerID
+            print(speaker_ID)
+            return jsonify({"speaker_ID":speaker_ID})
+
+        except Exception as e:
+            res = "エラーなのだ。もう一度内容を入力してほしいのだ"
+            response = {'result':res}
+            return jsonify(response)
+
+    else:
+        Global_speakerID = default_ID 
+        speaker_ID = default_ID
+        print(speaker_ID)
+        return jsonify({"speaker_ID":speaker_ID})
+
 app.run()
