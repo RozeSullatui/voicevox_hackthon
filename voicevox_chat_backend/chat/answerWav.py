@@ -33,6 +33,6 @@ def playWav(file):
 
 # テスト用　いらない時はコメントアウト
 
-# makeWav("こんにちは！ずんだもんです", 42)
-# playWav(os.path.join(basedir,"wav/answer.wav"))
+#makeWav("こんにちは！ずんだもんです", 42)
+#playWav(os.path.join(basedir,"wav/answer.wav"))
 
