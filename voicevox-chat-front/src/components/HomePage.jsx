@@ -36,8 +36,9 @@ export const HomePage = () => {
         const autoReply = { text: data.result, isUser: false };
         setMessages(prevMessages => [...prevMessages, autoReply]);
         setShowAutoReply(true);
-        // 音楽を再生する
-        const audio = new Audio(audioUrl);
+        // 音を再生する
+        const audioFileName = data.audio_file_name; // audio_file_nameを取得
+        const audio = new Audio(`/audio?filename=${audioFileName}`); // filenameをパラメーターにして/audioエンドポイントにアクセス
         audio.play();
       })
       .catch(error => console.error(error));
