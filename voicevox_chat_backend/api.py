@@ -18,7 +18,7 @@ def api():
     global past_messages_list
     
     speaker_ID = 1
-
+    '''
     if request.method == "POST":
         try:
             data = request.get_json()
@@ -42,5 +42,26 @@ def api():
         past_messages_list = []
         shutil.rmtree('wav')
         os.mkdir('wav')
+    '''
+    
+    try:
+        data = request.get_json()
+        text = data['post_text']
+        
+        answer = callChatGPT(text, "role_text/zundamon.txt")
+
+        res = answer[0]
+        playWav(makeWav(res, speaker_ID))
+        response = {'result':res}
+        
+        past_messages_list = answer[1]
+        
+        return jsonify(response)
+    
+    except Exception as e:
+        res = "エラーなのだ。もう一度内容を入力してほしいのだ"
+        response = {'result':res}
+        return jsonify(response)
+    
 
 app.run()
