@@ -18,7 +18,7 @@ def api():
     global past_messages_list
     
     speaker_ID = 1
-    '''
+    
     if request.method == "POST":
         try:
             data = request.get_json()
@@ -27,7 +27,8 @@ def api():
             answer = callChatGPT(text, "role_text/zundamon.txt")
 
             res = answer[0]
-            playWav(makeWav(res, speaker_ID))
+            # playWav(makeWav(res, speaker_ID))
+            makeWav(res, speaker_ID)
             response = {'result':res}
             
             past_messages_list = answer[1]
@@ -40,18 +41,20 @@ def api():
             return jsonify(response)
     else:
         past_messages_list = []
-        shutil.rmtree('wav')
-        os.mkdir('wav')
-    '''
+        shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
+        os.mkdir("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
     
+    '''
     try:
+        print(request.headers.get('Content-Type'))
         data = request.get_json()
         text = data['post_text']
         
         answer = callChatGPT(text, "role_text/zundamon.txt")
 
         res = answer[0]
-        playWav(makeWav(res, speaker_ID))
+        # playWav(makeWav(res, speaker_ID))
+        makeWav(res, speaker_ID)
         response = {'result':res}
         
         past_messages_list = answer[1]
@@ -62,6 +65,6 @@ def api():
         res = "エラーなのだ。もう一度内容を入力してほしいのだ"
         response = {'result':res}
         return jsonify(response)
-    
+    '''
 
 app.run()
