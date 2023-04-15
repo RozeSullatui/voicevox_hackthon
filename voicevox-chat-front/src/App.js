@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { MessageList } from './components/MessageList';
 import { ChatInput } from './components/Input';
-import './styles.css';
+import './style/styles.css';
 
 export const App = () => {
   const [messages, setMessages] = useState([]);
