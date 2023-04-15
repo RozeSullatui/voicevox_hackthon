@@ -3,6 +3,8 @@ import '../style/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faCirclePlay} from '@fortawesome/free-solid-svg-icons';
 
+import { AudioButton } from './Audio';
+
 import myImage from '../images/Icon.png';
 
 export const Message = ({ message }) => {
@@ -12,7 +14,10 @@ export const Message = ({ message }) => {
       {!isUser && (
         <div className="user-icon">
           <img src={myImage} alt=''/>
+
+          <AudioButton/>
           <FontAwesomeIcon icon={faCirclePlay} className="play-icon"/>
+
         </div>
       )}
       {isUser ? (<FontAwesomeIcon icon={faDownload} className="download-icon"/>) : null}
