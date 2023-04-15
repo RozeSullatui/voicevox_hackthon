@@ -159,13 +159,73 @@ color: #0084ff;
 
 .link{
   margin-top: 10px;
-}
-
-.icon{
-  
+  background-image: '../images/homeImg.jpg';
 }
 
 .user-icon img {
   width: 50px;
 }
+
+.container {
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo h1{
+  color: #eaeaea;
+  font-size: 50px;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.links-container {
+  margin-bottom: 2rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.links a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+body{
+  margin: 0px;
+}
+
+
+
+
 
