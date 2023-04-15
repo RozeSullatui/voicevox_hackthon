@@ -28,14 +28,14 @@ def api():
 @app.route('/audio')
 def get_audio():
     # オーディオファイルを読み込みます
-    with open('/path/to/audio.wav', 'rb') as f:
+    with open('chat/wav2/error.wav', 'rb') as f:
         audio_data = f.read()
     # ファイルをレスポンスとして返します
     return send_file(
         io.BytesIO(audio_data),
         mimetype='audio/wav',
         as_attachment=True,
-        attachment_filename='audio.wav'
+        attachment_filename='error.wav'
     )
 
 
