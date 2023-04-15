@@ -5,7 +5,7 @@ import { faDownload, faCirclePlay} from '@fortawesome/free-solid-svg-icons';
 
 import { AudioButton } from './Audio';
 
-import myImage from '../images/Icon.png';
+import myImage from '../images/Zundamon.png';
 
 export const Message = ({ message }) => {
   const { text, isUser } = message;
