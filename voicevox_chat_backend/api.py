@@ -1,8 +1,9 @@
 from dotenv import load_dotenv
 import os
-from flask import Flask,request,jsonify
-from chat.src.functions.chat_gpt import callChatGPT
-from chat.src.functions.answerWav import playWav,makeWav
+from flask import Flask, request, jsonify
+
+from chat.chat_gpt import callChatGPT
+from chat.answerWav import playWav, makeWav
 
 load_dotenv()
 path = os.environ.get('PYTHONPATH')
