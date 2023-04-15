@@ -5,7 +5,6 @@ import '../style/styles.css';
 export const MessageList = ({ messages }) => {
   const [textMessages] = useState([]);
 
-
   return (
     <div className="message-list">
       {messages.map((message, index) => (
@@ -15,9 +14,7 @@ export const MessageList = ({ messages }) => {
         />
       ))}
       {textMessages.map((message, index) => (
-        <div
-          key={index}
-        >
+        <div key={index}>
           <Message
             message={{ text: message.text, isUser: message.isUser }}
           />
