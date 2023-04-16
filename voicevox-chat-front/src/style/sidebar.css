@@ -23,4 +23,12 @@ border-radius: 10px;
   padding: 12px;
   color: white;
 }
-    
+
+.sidebar-row.active {
+  background-color: wheat;
+}
+  
+.sidebar-row.active h4 {
+  font-weight: bold;
+  color: black;
+}
