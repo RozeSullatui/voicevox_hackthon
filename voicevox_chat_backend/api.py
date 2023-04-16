@@ -23,18 +23,23 @@ Global_speakerID = default_ID
 def api():
     global past_messages_list
     global Global_speakerID 
-    speaker_ID = Global_speakerID 
+    speaker_ID = Global_speakerID
+    
     
     if request.method == "POST":
         try:
             data = request.get_json()
             text = data['post_text']
+            # if past_messages_list==[]:
+                # text = attention + text
             
             answer = callChatGPT(
                 text,
                 return_roleText(speaker_ID),
                 past_messages_list
             )
+            
+            print(text)
 
             res = answer[0]
             # playWav(makeWav(res, speaker_ID))
@@ -51,6 +56,7 @@ def api():
             response = {'result':res, 'audio_file_name':wavfile}
             return jsonify(response)
     else:
+        print("こんにちは")
         past_messages_list = []
         # shutil.rmtree("/home/voicevox_hackthon/voicevox_chat_backend/chat/wav")
         # os.mkdir("chat/wav")
@@ -74,8 +80,11 @@ def get_audio():
 @app.route('/changeCharacter', methods=['GET','POST'])
 def change_chara():
     global Global_speakerID
-    global default_ID 
+    global default_ID
+    global past_messages_list
+    
     if request.method == "POST":
+        past_messages_list = []
         try:
             data = request.get_json()
             Global_speakerID = data['speaker_ID']
@@ -87,6 +96,8 @@ def change_chara():
             res = "エラーなのだ。もう一度内容を入力してほしいのだ"
             response = {'result':res}
             return jsonify(response)
+        
+        
 
     else:
         Global_speakerID = default_ID 

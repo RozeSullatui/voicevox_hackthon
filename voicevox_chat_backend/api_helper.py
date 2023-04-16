@@ -6,7 +6,7 @@ basedir = os.path.dirname(__file__)
 # ここにIDとファイル名
 role_textMap = {
     1 :"zundamon.txt",
-    42:"ojisan.txt",
+    42:"odisan.txt",
     
 }
 
