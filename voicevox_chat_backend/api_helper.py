@@ -7,6 +7,9 @@ basedir = os.path.dirname(__file__)
 role_textMap = {
     1 :"zundamon.txt",
     42:"odisan.txt",
+    14:"byoujaku.txt",
+    20:"desuwa.txt",
+    2:"tundere.txt",
     
 }
 
