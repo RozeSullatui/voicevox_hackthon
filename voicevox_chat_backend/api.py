@@ -80,8 +80,11 @@ def get_audio():
 @app.route('/changeCharacter', methods=['GET','POST'])
 def change_chara():
     global Global_speakerID
-    global default_ID 
+    global default_ID
+    global past_messages_list
+    
     if request.method == "POST":
+        past_messages_list = []
         try:
             data = request.get_json()
             Global_speakerID = data['speaker_ID']
@@ -93,6 +96,8 @@ def change_chara():
             res = "エラーなのだ。もう一度内容を入力してほしいのだ"
             response = {'result':res}
             return jsonify(response)
+        
+        
 
     else:
         Global_speakerID = default_ID 
