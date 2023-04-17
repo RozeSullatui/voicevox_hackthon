@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+## Dev Container
+https://github.com/GawinGowin/devcontainer_voicevox_hackthon
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
